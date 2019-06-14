@@ -1,6 +1,39 @@
 export default function picassoDefinition({
   layout,
 }) {
+  const box = function ({
+    start,
+    end,
+    width,
+    fill,
+    minHeightPx
+  }) {
+    const b = {
+      key: 'bars',
+      type: 'box',
+      data: {
+        extract: {
+          field: 'qDimensionInfo/0',
+          props: {
+            start,
+            end
+          }
+        }
+      },
+      settings: {
+        orientation: 'horizontal',
+        major: { scale: 'y' },
+        minor: { scale: 'v' },
+        box: {
+          width,
+          fill,
+          minHeightPx
+        }
+      }
+    };
+
+    return b;
+  }
   if (!layout.qHyperCube) {
     throw new Error('Layout is missing a hypercube');
   }
